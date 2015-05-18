@@ -1,0 +1,18 @@
+<html>
+  <head>
+    <title>{{ title }} - helloworl</title>
+    <style>
+        td {padding: 10px; text-align:center;}
+	.ui-autocomplete-loading {
+	    background: white url("images/ui-anim_basic_16x16.gif") right center no-repeat;
+	}
+	#search { width: 25em; }
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+  </head>
+  <body>
+      {% block content %}{% endblock %}
+  </body>
+</html>
