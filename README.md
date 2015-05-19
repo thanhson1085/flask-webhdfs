@@ -1,10 +1,10 @@
-PREREQUISITE:
+### PREREQUISITE:
 - python3
 - virtualenv
 - pip
+- Flask==0.10.1
 
-
-INSTALLATION:
+### INSTALLATION:
 ```
 git clone git@git.sigma-solutions.eu:web-team/clotify-framework.git
 cd clotify-framework
