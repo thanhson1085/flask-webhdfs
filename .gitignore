@@ -3,3 +3,8 @@ __pycache__/*
 config/config.py
 env
 env/*
+*.pyc
+*.swo
+*.swp
+logs/*
+config/config.py
