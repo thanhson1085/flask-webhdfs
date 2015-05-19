@@ -17,3 +17,14 @@ MYSQL_CHARSET = "utf-8"
 # elasticSearch Server
 ELASTIC_HOST = "http://192.168.1.86"
 ELASTIC_PORT = 9200
+
+# logs
+# log level:
+#   0: all log (this is default)
+#   10: debug, info, warning, error log
+#   20: info, warning, error log
+#   30: warning, error log
+#   40: only error log
+#   50: nothing
+LOG_LEVEL = 0
+LOG_FILE = 'logs/application.log'
