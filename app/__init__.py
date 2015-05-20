@@ -23,3 +23,6 @@ if cfg.DEBUG:
     app.logger.addHandler(file_handler)
 
 from app.module_search import controllers
+
+# initial blueprint
+app.register_blueprint(controllers.search, url_prefix='/search')

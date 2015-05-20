@@ -30,7 +30,7 @@
       <h3> Total records: {{data|length}}</h3>
       <p>
            <span>Insert: </span>
-           <form action="/insert" method="post" name="insert">
+           <form action="{{ url_for('search.insert_user') }}" method="post" name="insert">
                 <input type="text" name="username" placeholder="username"/>
                 <input type="text" name="email" placeholder="Email" />
                 <input type="text" name="password" placeholder="Password" />
@@ -41,12 +41,14 @@
       </p>
       <table border=1>
           <thead>
+          <tr>
               <td>Id</td>
               <td>username</td>
               <td>Email</td>
               <td>First Name</td>
               <td>Last Name </td>
               <td>Action </td>
+          </tr>
           </thead>
           <tbody>
               {% for item in data %}
@@ -56,7 +58,7 @@
                   <td>{{item['email']}}</td>
                   <td>{{item['first_name']}}</td>
                   <td>{{item['last_name']}}</td>
-                  <td><a href="/delete/{{item['id']}}">Delete</a></td>
+                  <td><a href="{{ url_for('search.delete_user',id=item.id) }}">Delete</a></td>
               </tr>
               {% endfor %}
           </tbody>
@@ -80,7 +82,7 @@
               var username = $(this).html();
 
               $.ajax({
-                 url:"/get_user_by_name",
+                 url:"{{ url_for('search.get_user_by_name') }}",
                  type:"POST",
                  data:username,
                  contentType:"application/json; charset=utf-8",
