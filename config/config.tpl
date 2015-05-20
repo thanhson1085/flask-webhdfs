@@ -5,6 +5,9 @@ APP_PORT = 5000
 # Define the application directory
 import os
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
+BASE_ROOT = os.path.abspath(os.path.join(os.path.split(__file__)[0], '..'))
+TEMPLATE_ROOT = os.path.join(BASE_ROOT, 'templates/')
+STATIC_ROOT = os.path.join(BASE_ROOT, 'static/')
 
 # Define the database - we are working with MySQL
 MYSQL_DB = "test"
