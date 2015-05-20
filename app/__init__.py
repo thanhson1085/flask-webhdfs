@@ -8,6 +8,7 @@ app = Flask(__name__, template_folder="../templates")
 app.config['SQLALCHEMY_DATABASE_URI'] = "mysql+pymysql://{}:{}@{}/{}".format(cfg.MYSQL_USER, cfg.MYSQL_PASSWORD, cfg.MYSQL_HOST, cfg.MYSQL_DB)
 db = SQLAlchemy(app)
 
+# initial log application
 if cfg.DEBUG:
     from logging import Formatter
     import logging
@@ -22,6 +23,7 @@ if cfg.DEBUG:
     ))
     app.logger.addHandler(file_handler)
 
+# initial a module
 from app.module_search import controllers
 
 # initial blueprint
