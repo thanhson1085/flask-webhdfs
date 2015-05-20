@@ -1,4 +1,4 @@
-from flask import render_template
+from flask import render_template, Blueprint, jsonify, url_for
 from app import app
 from elasticsearch import Elasticsearch
 from config import config as cfg
@@ -10,8 +10,11 @@ from app.module_search.models import User
 es_url = "{}:{}".format(cfg.ELASTIC_HOST, cfg.ELASTIC_PORT)
 es = Elasticsearch([es_url])
 
+search = Blueprint('search', __name__)
+
 @app.route('/')
-@app.route('/index')
+@search.route('/')
+@search.route('/index')
 def index():
     user = {'nickname': 'Ngoc Cuong'}
     #es = Elasticsearch([{"hosts": cfg.ELASTIC_HOST, "port": cfg.ELASTIC_PORT}])
@@ -20,7 +23,7 @@ def index():
 
     return render_template('module_search/index.html', title='Home page', user = user, data=users, autocomplete=res)
 
-@app.route('/insert', methods=["POST"])
+@search.route('/insert', methods=["POST"])
 def insert_user():
     params = request.form
     user = User(username=params['username'], password=params['password'], email=params['email'], first_name=params['first_name'], last_name=params['last_name'])
@@ -39,9 +42,9 @@ def insert_user():
                 })
     except Exception as e:
         print(e)
-    return redirect("/")
+    return redirect(url_for("search.index"))
 
-@app.route("/delete/<int:id>")
+@search.route("/delete/<int:id>")
 def delete_user(id):
     try:
         User.query.filter(User.id==id).delete()
@@ -55,7 +58,7 @@ def delete_user(id):
         print(e)
     return redirect("/")
 
-@app.route("/get_user_by_name", methods=["POST"])
+@search.route("/get_user_by_name", methods=["POST"])
 def get_user_by_name():
     params = request.data
     #print(params)

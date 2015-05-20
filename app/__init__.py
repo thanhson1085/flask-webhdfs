@@ -25,3 +25,6 @@ if cfg.DEBUG:
 
 # initial a module
 from app.module_search import controllers
+
+# initial blueprint
+app.register_blueprint(controllers.search, url_prefix='/search')
