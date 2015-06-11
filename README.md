@@ -19,17 +19,12 @@ docker pull thanhson1085/docker-cloudera-quickstart
 
 And run that image, and please do not forget expose webhdfs port(50070, 50075):
 ```
-docker run -i -t -d -p 50070:50070 -p 50075:50075 thanhson1085/docker-cloudera-quickstart
+docker run -i -t -d -p 50070:50070 -p 50075:50075 --hostname webhdfs thanhson1085/docker-cloudera-quickstart
 ```
 
 There is a trick here. You have to edit /etc/hosts file to your machine know where is HDFS server.
-At the first, you need to have hostname of HDFS server. 
 ```
-docker ps
-```
-The hostname is container ID. So now, add a line below to /etc/hosts file
-```
-YOUR_IP_ADDRESS CONTAINER_ID
+YOUR_IP_ADDRESS webhdfs
 ```
 
 Finally, you have a HDFS Server with webhdfs support.
