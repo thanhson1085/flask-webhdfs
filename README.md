@@ -29,7 +29,7 @@ There is 2 ways to run my source code. I recommend you using Docker
 docker run -i -t -d -p 5000:5000 --hostname flask-webhdfs --link webhdfs thanhson1085/flask-webhdfs
 ```
 
-#### Rin
+#### DOWNLOAD AND RUN THE SOURCE CODE IN YOUR MACHINE
 
 There is a trick here. You have to edit /etc/hosts file to your machine know where is HDFS server.
 ```
