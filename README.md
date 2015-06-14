@@ -10,6 +10,7 @@ Actually, it is easier than you think. The most dificulty is preparing environme
 
 ### INSTALLATION:
 To install Hadoop, pleas take a look at https://github.com/thanhson1085/docker-cloudera-quickstart
+
 I will show you the detail, just hope that it will save your time.
 
 At the first, using Docker to clone docker-cloudera-quickstart to your local.
@@ -21,6 +22,14 @@ And run that image, and please do not forget expose webhdfs port(50070, 50075):
 ```
 docker run -i -t -d -p 50070:50070 -p 50075:50075 --hostname webhdfs thanhson1085/docker-cloudera-quickstart
 ```
+
+There is 2 ways to run my source code. I recommend you using Docker
+#### RUN SOURCE CODE WITH DOCKER
+```
+docker run -i -t -d -p 5000:5000 --hostname flask-webhdfs --link webhdfs thanhson1085/flask-webhdfs
+```
+
+#### Rin
 
 There is a trick here. You have to edit /etc/hosts file to your machine know where is HDFS server.
 ```
