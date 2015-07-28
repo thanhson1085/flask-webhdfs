@@ -10,8 +10,31 @@ ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 
 @app.route('/')
 @app.route('/index')
-@app.route('/v1/upload', methods=['GET', 'POST'])
+@app.route('/v1/upload', methods=['POST'])
 def upload_file():
+    """
+    Upload file
+    ---
+    tags:
+        - Files
+    consumes: "multipart/form-data"
+    parameters:
+        -   name: file
+            in: formData
+            required: true
+            paramType: body
+            dataType: file
+            type: file
+    responses:
+        200:
+            description: Returns album_id after upload
+        401:
+            description: Unauthorized
+        400:
+            description: Bad Request
+        500:
+            description: Server Internal error
+    """
     hdfs = PyWebHdfsClient(host='192.168.1.41',port='50070', user_name='thanhson1085')
     if request.method == 'POST':
         file = request.files['file']
