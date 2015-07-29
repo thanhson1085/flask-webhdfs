@@ -26,7 +26,7 @@ docker run -i -t -d -p 50070:50070 -p 50075:50075 --hostname webhdfs thanhson108
 There is 2 ways to run my source code. I recommend you using Docker
 #### RUN SOURCE CODE WITH DOCKER
 ```
-docker run -i -t -d -p 5000:5000 --hostname flask-webhdfs --link webhdfs thanhson1085/flask-webhdfs
+docker run -i -t -d -p 5000:5000 --hostname flask-webhdfs --link webhdfs:webhdfs thanhson1085/flask-webhdfs
 ```
 
 #### DOWNLOAD AND RUN THE SOURCE CODE IN YOUR MACHINE

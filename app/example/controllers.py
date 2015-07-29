@@ -35,7 +35,7 @@ def upload_file():
         500:
             description: Server Internal error
     """
-    hdfs = PyWebHdfsClient(host='192.168.1.41',port='50070', user_name='thanhson1085')
+    hdfs = PyWebHdfsClient(host='webhdfs',port='50070', user_name='thanhson1085')
     if request.method == 'POST':
         file = request.files['file']
         if file and allowed_file(file.filename):

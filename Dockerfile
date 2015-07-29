@@ -7,6 +7,7 @@ RUN \
 
 WORKDIR /build
 ADD . /build
+COPY config/config.py.dev /build/config/config.py
 
 RUN pip3 install -r requirements.txt
 CMD python3 run.py
