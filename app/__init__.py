@@ -2,6 +2,7 @@ from flask import Flask, send_from_directory, jsonify
 from config import config as cfg
 
 app = Flask(__name__, static_url_path='')
+Flask(__name__, template_folder="../swagger", static_folder="../swagger")
 
 from app.example import controllers
 
@@ -20,6 +21,7 @@ if cfg.DEBUG:
     ))
     app.logger.addHandler(file_handler)
 
+from flask_swagger import swagger
 # Swagger Doccument for API
 @app.route('/docs')
 def spec():
@@ -28,15 +30,6 @@ def spec():
     swag['info']['title'] = "Files API"
     swag['basePath'] = "/"
     return jsonify(swag)
-
-# Swagger Static Page
-@app.route('/swagger')
-def swagger_index():
-    return app.send_static_file('../swagger/index.html') 
-
-@app.route('/swagger/<path>')
-def swagger(path):
-    return send_from_directory('../swagger', path) 
 
 # Cross origin
 @app.after_request

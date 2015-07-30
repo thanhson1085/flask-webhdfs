@@ -7,9 +7,7 @@ from pywebhdfs.webhdfs import PyWebHdfsClient
 from werkzeug import secure_filename
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
-
-@app.route('/')
-@app.route('/index')
+	
 @app.route('/v1/upload', methods=['POST'])
 def upload_file():
     """
