@@ -1,7 +1,7 @@
-from flask import Flask
+from flask import Flask, send_from_directory, jsonify
 from config import config as cfg
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='')
 
 from app.example import controllers
 
@@ -20,4 +20,31 @@ if cfg.DEBUG:
     ))
     app.logger.addHandler(file_handler)
 
+# Swagger Doccument for API
+@app.route('/docs')
+def spec():
+    swag = swagger(app)
+    swag['info']['version'] = "1.0"
+    swag['info']['title'] = "Files API"
+    swag['basePath'] = "/"
+    return jsonify(swag)
 
+# Swagger Static Page
+@app.route('/swagger')
+def swagger_index():
+    return app.send_static_file('../swagger/index.html') 
+
+@app.route('/swagger/<path>')
+def swagger(path):
+    return send_from_directory('../swagger', path) 
+
+# Cross origin
+@app.after_request
+def after_request(response):
+    response.headers.add('Access-Control-Allow-Origin','*')
+    response.headers.add('Access-Control-Allow-Headers', "Authorization, Content-Type")
+    response.headers.add('Access-Control-Expose-Headers', "Authorization")
+    response.headers.add('Access-Control-Allow-Methods', "GET, POST, PUT, DELETE, OPTIONS")
+    response.headers.add('Access-Control-Allow-Credentials', "true")
+    response.headers.add('Access-Control-Max-Age', 60 * 60 * 24 * 20)
+    return response
