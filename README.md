@@ -46,10 +46,10 @@ Run the commands below to install and create environment to run the application
 ```
 virtualenv -p /usr/bin/python3 env
 source env/bin/activate
-cp config/config.tpl config/config.py
+cp config/config.py.dev config/config.py
 # And edit config.py to match your machine
 pip install -r requirements.txt  
 python run.py  
 ```
-
-And test the upload file. I suggest your use POSTMAN (Chrome AddOn) for the test.
+#### Test
+I integrated swagger in this app. So you can use Swagger UI to test this app. And you can find swagger schema at http://localhost:5000/docs

@@ -1,8 +1,8 @@
-from flask import Flask, send_from_directory, jsonify
+from flask import Flask, send_from_directory, jsonify, Response
 from config import config as cfg
+import os
 
-app = Flask(__name__, static_url_path='')
-Flask(__name__, template_folder="../swagger", static_folder="../swagger")
+app = Flask(__name__)
 
 from app.example import controllers
 
@@ -30,6 +30,11 @@ def spec():
     swag['info']['title'] = "Files API"
     swag['basePath'] = "/"
     return jsonify(swag)
+
+# root page
+@app.route('/', methods=['GET'])
+def metrics():  # pragma: no cover
+    return Response("Silence is golden", mimetype="text/html")
 
 # Cross origin
 @app.after_request
