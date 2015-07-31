@@ -20,13 +20,13 @@ docker pull thanhson1085/docker-cloudera-quickstart
 
 And run that image, and please do not forget expose webhdfs port(50070, 50075):
 ```
-docker run -i -t -d -p 50070:50070 -p 50075:50075 --hostname webhdfs thanhson1085/docker-cloudera-quickstart
+docker run -i -t -d -p 50070:50070 -p 50075:50075 --name webhdfs thanhson1085/docker-cloudera-quickstart
 ```
 
 There is 2 ways to run my source code. I recommend you using Docker
 #### Using Docker
 ```
-docker run -i -t -d -p 5000:5000 --hostname flask-webhdfs --link webhdfs:webhdfs thanhson1085/flask-webhdfs
+docker run -i -t -d -p 5000:5000 --name flask-webhdfs --link webhdfs:webhdfs thanhson1085/flask-webhdfs
 ```
 
 #### Install in normal way
@@ -52,3 +52,20 @@ python run.py
 ```
 #### Test
 I integrated swagger in this app. So you can use Swagger UI to test this app. And you can find swagger schema at http://localhost:5000/docs
+
+After upload the files. You can use hadoop command to look up in hdfs.
+
+Go to Hadoop server:
+```
+sudo docker exec -it webhdfs bash
+```
+List files in hdfs:
+```
+hadoop fs -ls /tmp/thanhson1085/data
+```
+The output should be:
+```
+root@88ab8921561e:/# hadoop fs -ls /tmp/thanhson1085/data
+Found 1 items
+-rwxr-xr-x   1 thanhson1085 supergroup      18113 2015-07-31 04:59 /tmp/thanhson1085/data/0aceccea-0830-4443-bec9-08c48946d0cc-medium.jpeg
+```

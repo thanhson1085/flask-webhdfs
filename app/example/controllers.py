@@ -4,6 +4,7 @@ from config import config as cfg
 from flask import request, redirect, jsonify
 from pywebhdfs.webhdfs import PyWebHdfsClient
 from werkzeug import secure_filename
+import time
 
 ALLOWED_EXTENSIONS = set(['txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif'])
 	
@@ -38,7 +39,7 @@ def upload_file():
     if request.method == 'POST':
         file = request.files['file']
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            filename = secure_filename(str(time.time()) + file.filename)
             my_file = 'tmp/thanhson1085/data/' + filename
             hdfs.create_file(my_file, file)
             return jsonify({'success':'true'})
